@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "941706182527",
+    "project_id": "forge-career",
+    "storage_bucket": "forge-career.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941706182527:android:68b25dedc336e9dda3244a",
+        "android_client_info": {
+          "package_name": "com.example.forgecareer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941706182527-2biicmgod8nd6rn9fvvgd8uguqakk4i6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.forgecareer",
+            "certificate_hash": "b0a344b4f47fb07c26cbfa76da489f450a7456da"
+          }
+        },
+        {
+          "client_id": "941706182527-avg5234pqv7t7nigm53feakvqqff3rck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBguZd8aeL7YLkNB2UPB3ZKPoiP7TO2uWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941706182527-avg5234pqv7t7nigm53feakvqqff3rck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
