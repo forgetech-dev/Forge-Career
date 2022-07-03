@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Forge Career</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome">Welcome to Forge Career</string>
+    <string name="home">Home</string>
+    <string name="company">Companies</string>
+    <string name="interview">Interviews</string>
+
 </resources>
