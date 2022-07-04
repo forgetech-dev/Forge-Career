@@ -14,4 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="255dp"
         android:src="@drawable/forge_career_logo" />
+
+    <Button
+        android:id="@+id/buttonHomeFragmentTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
 </FrameLayout>
