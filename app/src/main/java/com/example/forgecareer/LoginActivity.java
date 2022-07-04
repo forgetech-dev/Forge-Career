@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
     private SignInButton signInButton;
+    private int startCount = 0;
 
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
+        if (currentUser != null && startCount == 0) {
             updateUI(currentUser);
         }
     }
@@ -142,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        startCount += 1;
         userID = user.getUid();
         Intent intent = new Intent(this, FirebaseActivityTemp.class);
         startActivity(intent);
