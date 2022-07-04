@@ -26,9 +26,9 @@
 │           ├── PositionType: SDE
 │           ├── StartDate: Fall23
 │           ├── AppliedDate: 2022-09-01
-│           ├── Priority: Ultra
+│           ├── Priority: High
 │           ├── Interview: True
-│           ├── InterviewDate: True
-│           └── InterviewDate: 2022-10-01
+│           ├── InterviewDate: 2022-10-01
+│           └── InterviewRound: 0
 └── UserInfo
 ```
