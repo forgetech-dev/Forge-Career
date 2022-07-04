@@ -10,6 +10,10 @@ public class ApplicationDAO {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference(Application.class.getSimpleName());
     }
+    public ApplicationDAO(String userID) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        databaseReference = db.getReference(Application.class.getSimpleName()+ "/" +userID);
+    }
     public Task<Void> add(Application application) {
         return databaseReference.push().setValue(application);
     }
