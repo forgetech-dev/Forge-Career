@@ -12,6 +12,8 @@ import com.example.forgecareer.db.ApplicationDAO;
 
 public class FirebaseActivityTemp extends AppCompatActivity {
 
+    public String UserID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,12 @@ public class FirebaseActivityTemp extends AppCompatActivity {
         final EditText editName = findViewById(R.id.edit_name);
         final EditText editPosition = findViewById(R.id.edit_position);
         Button btnSubmit = findViewById(R.id.btn_submit);
-        ApplicationDAO dao = new ApplicationDAO();
+
+        UserID = LoginActivity.userID;
+
+        Toast.makeText(this, "UserID: " + UserID, Toast.LENGTH_SHORT).show();
+
+        ApplicationDAO dao = new ApplicationDAO(UserID);
         btnSubmit.setOnClickListener(click->{
             Application emp = new Application(editName.getText().toString(), editPosition.getText().toString());
             dao.add(emp).addOnSuccessListener(suc -> {
