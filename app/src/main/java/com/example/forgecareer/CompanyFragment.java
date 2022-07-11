@@ -3,10 +3,19 @@ package com.example.forgecareer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.forgecareer.db.Application;
+import com.example.forgecareer.recyclecViews.ApplicationAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +32,11 @@ public class CompanyFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerView;
+
+
+    List<Application> applicationList;
 
     public CompanyFragment() {
         // Required empty public constructor
@@ -59,6 +73,27 @@ public class CompanyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_company, container, false);
+        View view = inflater.inflate(R.layout.fragment_company, container, false);
+        initApplicationData();
+        recyclerView = view.findViewById(R.id.recyclerView);
+        if (recyclerView == null) {
+            Log.d("list", "null!!!");
+        }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
+        ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList);
+        recyclerView.setAdapter(applicationAdapter);
+
+        return view;
+    }
+
+
+    private void initApplicationData() {
+        applicationList = new ArrayList<>();
+        Application application1 = new Application("Amazon", "Intern", "SWE", "Summer23", "Nick", "Applied", "09/01/2022", "Ultra", "N/A", "this is the note for Amazon application");
+        Application application2 = new Application("Google", "FullTime", "SDE", "Summer23", "Tom", "Interview", "09/02/2022", "High", "10/05/2022", "this is the note for google application");
+        applicationList.add(application1);
+        applicationList.add(application2);
     }
 }
