@@ -3,20 +3,12 @@ package com.example.forgecareer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.forgecareer.recyclecViews.Movie;
-import com.example.forgecareer.recyclecViews.MovieAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +29,6 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
 
-    List<Movie> movieList;
 
     public HomeFragment() {
         // Required empty public constructor

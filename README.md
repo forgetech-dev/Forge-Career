@@ -14,21 +14,44 @@
 │       │   ├── CompanyName: Amazon
 │       │   ├── JobType: Full-Time
 │       │   ├── PositionType: SWE
+│       |   ├── Status: Applied
+│       |   ├── Referer: Nick
 │       │   ├── StartDate: Summer23
 │       │   ├── AppliedDate: 2022-09-01
 │       │   ├── Priority: High
-│       │   ├── Interview: False
 │       │   ├── InterviewDate: Null
 │       │   └── InterviewRound: 0
 │       └── CompanyID002/
 │           ├── CompanyName: Google
 │           ├── JobType: Full-Time
 │           ├── PositionType: SDE
+│           ├── Statue: Applied
+│           ├── Referer: Tom
 │           ├── StartDate: Fall23
 │           ├── AppliedDate: 2022-09-01
 │           ├── Priority: High
-│           ├── Interview: True
 │           ├── InterviewDate: 2022-10-01
 │           └── InterviewRound: 0
 └── UserInfo
+```
+
+* UserData definitation
+```bash
+.
+├── JobType/
+│   ├── FullTime
+│   ├── PartTime
+│   └── Intern
+├── Status/
+│   ├── Interested
+│   ├── Applied
+│   ├── OA
+│   ├── Interview
+│   ├── Reject
+│   └── Offered
+└── Priority/
+    ├── Ultra
+    ├── High
+    ├── Medium
+    └── Low
 ```
