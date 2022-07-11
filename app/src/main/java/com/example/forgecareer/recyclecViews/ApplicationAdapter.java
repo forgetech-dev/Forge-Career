@@ -1,10 +1,12 @@
 package com.example.forgecareer.recyclecViews;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -44,20 +46,32 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         holder.positionTextView.setText(application.getPositionType());
         holder.priorityTextView.setText(application.getPriority());
         holder.notesTextView.setText(application.getNotes());
+        holder.refererTextView.setText(application.getReferer());
+        holder.startDateTextView.setText(application.getStartDate());
+        holder.applicationDateTextView.setText(application.getApplicationDate());
+        holder.interviewTextView.setText(application.getInterviewDate());
+
+
 
         switch (application.getStatus()) {
             case "Interested":
                 holder.statusImageView.setImageResource(R.drawable.status_interested);
+                break;
             case "Applied":
                 holder.statusImageView.setImageResource(R.drawable.status_applied);
+                break;
             case "OA":
                 holder.statusImageView.setImageResource(R.drawable.status_oa);
+                break;
             case "Interview":
                 holder.statusImageView.setImageResource(R.drawable.status_interview);
+                break;
             case "Rejected":
                 holder.statusImageView.setImageResource(R.drawable.status_reject);
+                break;
             case "Offer":
                 holder.statusImageView.setImageResource(R.drawable.status_offer);
+                break;
         }
 
 
@@ -77,23 +91,29 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
 
         ConstraintLayout expandableLayout;
         ImageView statusImageView;
-        TextView companyTextView, jobTypeTextView, positionTextView, priorityTextView, notesTextView;
+        TextView listBackgroundTextView, companyTextView, jobTypeTextView, positionTextView, priorityTextView, notesTextView;
+        TextView refererTextView, startDateTextView, applicationDateTextView, interviewTextView;
 
         public ApplicationVH(@NonNull final View itemView) {
             super(itemView);
 
             statusImageView = itemView.findViewById(R.id.statusImageView);
 
+            listBackgroundTextView = itemView.findViewById(R.id.listBackgroundTextView);
             companyTextView = itemView.findViewById(R.id.companyTextView);
             jobTypeTextView = itemView.findViewById(R.id.jobTypeTextView);
             positionTextView = itemView.findViewById(R.id.positionTextView);
             priorityTextView = itemView.findViewById(R.id.priorityTextView);
             notesTextView = itemView.findViewById(R.id.notesTextView);
+            refererTextView = itemView.findViewById(R.id.refererTextView);
+            startDateTextView = itemView.findViewById(R.id.startDateTextView);
+            applicationDateTextView = itemView.findViewById(R.id.appDateTextView);
+            interviewTextView = itemView.findViewById(R.id.interviewDateTextView);
 
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
 
 
-            companyTextView.setOnClickListener(new View.OnClickListener() {
+            listBackgroundTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 

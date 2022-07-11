@@ -91,9 +91,9 @@ public class CompanyFragment extends Fragment {
 
     private void initApplicationData() {
         applicationList = new ArrayList<>();
-        Application application1 = new Application("Amazon", "Intern", "SWE", "Summer23", "Nick", "Applied", "09/01/2022", "Ultra", "N/A", "this is the note for Amazon application");
-        Application application2 = new Application("Google", "FullTime", "SDE", "Summer23", "Tom", "Interview", "09/02/2022", "High", "10/05/2022", "this is the note for google application");
-        applicationList.add(application1);
-        applicationList.add(application2);
+        applicationList.add(new Application("Amazon", "Intern", "SWE", "Summer23", "Nick", "Applied", "09/01/2022", "Ultra", "N/A", "this is the note for Amazon application"));
+        applicationList.add(new Application("Google", "FullTime", "SDE", "Summer23", "Tom", "Interview", "09/02/2022", "High", "10/05/2022", "this is the note for google application"));
+        applicationList.add(new Application("Waymo", "Intern", "FullStack", "Summer23", "Kshitiz", "Interested", "N/A", "High", "N/A", "This is the note for waymo application test row, trying to make it longer so that it can be a little bit different from the other two rows."));
+        applicationList.add(new Application("Meta", "Intern", "SWE", "Summer23", "Ouyang", "Applied", "08/01/2022", "Ultra", "N/A", "This is a note for the meta application"));
     }
 }
