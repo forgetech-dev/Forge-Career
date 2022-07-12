@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ForgeCareer">
         <activity
+            android:name=".AddApplicationActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".FirebaseActivityTemp"
             android:exported="false" />
         <activity
@@ -23,9 +27,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

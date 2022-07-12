@@ -3,34 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/add.xml" value="0.376" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/calendar_date_48px.xml" value="0.446" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/company_48px.xml" value="0.427" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/home_48px.xml" value="0.427" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/interview_48px.xml" value="0.427" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/jobType-48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/jobType.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/job_type.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/position_type_48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/priority_48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/referer_48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/start_date_48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/status_48px.xml" value="0.446" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/drawable/status_applied.xml" value="0.446" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.35609103078982596" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout-w936dp/activity_login.xml" value="0.415625" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/activity_add_application.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/activity_firebase_temp.xml" value="0.44947916666666665" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/activity_login.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/fragment_company.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/fragment_home.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/layout/fragment_interview.xml" value="0.5541666666666667" />
+        <entry key="..\:/workspace/ForgeCareer/app/src/main/res/menu/add_application_toolbar_meun.xml" value="0.23020833333333332" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/workspace/ForgeCareer/app/src/main/res/menu/menu.xml" value="0.5541666666666667" />
-        <entry key="app/src/main/res/drawable/status_OA.xml" value="0.2855" />
-        <entry key="app/src/main/res/drawable/status_applied.xml" value="0.306" />
-        <entry key="app/src/main/res/drawable/status_offer.xml" value="0.2855" />
-        <entry key="app/src/main/res/layout/activity_firebase_temp.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.42391304347826086" />
-        <entry key="app/src/main/res/layout/application_row.xml" value="0.34791666666666665" />
-        <entry key="app/src/main/res/layout/fragment_company.xml" value="0.15989583333333332" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/fragment_interview.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/movie_row.xml" value="0.33559782608695654" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

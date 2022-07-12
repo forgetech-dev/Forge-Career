@@ -1,5 +1,6 @@
 package com.example.forgecareer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class CompanyFragment extends Fragment {
     private String mParam2;
 
     RecyclerView recyclerView;
-
+    FloatingActionButton fab;
 
     List<Application> applicationList;
 
@@ -85,6 +87,11 @@ public class CompanyFragment extends Fragment {
         ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList);
         recyclerView.setAdapter(applicationAdapter);
 
+        fab = view.findViewById(R.id.addApplicationFAB);
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddApplicationActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 
