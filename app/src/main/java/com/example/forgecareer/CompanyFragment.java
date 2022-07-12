@@ -31,6 +31,8 @@ public class CompanyFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    public static List<Application> applicationList;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -38,7 +40,7 @@ public class CompanyFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton fab;
 
-    List<Application> applicationList;
+
 
     public CompanyFragment() {
         // Required empty public constructor
@@ -102,5 +104,7 @@ public class CompanyFragment extends Fragment {
         applicationList.add(new Application("Google", "FullTime", "SDE", "Summer23", "Tom", "Interview", "09/02/2022", "High", "10/05/2022", "this is the note for google application"));
         applicationList.add(new Application("Waymo", "Intern", "FullStack", "Summer23", "Kshitiz", "Interested", "N/A", "High", "N/A", "This is the note for waymo application test row, trying to make it longer so that it can be a little bit different from the other two rows."));
         applicationList.add(new Application("Meta", "Intern", "SWE", "Summer23", "Ouyang", "Applied", "08/01/2022", "Ultra", "N/A", "This is a note for the meta application"));
+        applicationList.add(new Application("Uber", "FullTime", "SDE", "Summer23", "N/A", "OA", "08/05/2022", "High", "N/A", "This is a note for uber page"));
+        applicationList.add(new Application("Netflix", "FullTime", "PM", "Summer23", "N/A", "Rejected", "08/02/2022", "Medium", "N/A", "This is a note for netflix page, although it is rejected here, I still hope I can get a job in netflix"));
     }
 }
