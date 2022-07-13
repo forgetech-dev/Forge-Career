@@ -3,6 +3,7 @@ package com.example.forgecareer;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,11 @@ import android.view.ViewGroup;
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +45,10 @@ public class CompanyFragment extends Fragment {
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
+
+    String TAG = "CompanyFragment";
+    String userID;
+    private DatabaseReference databaseReference;
 
 
 
@@ -78,23 +88,61 @@ public class CompanyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company, container, false);
-        initApplicationData();
         recyclerView = view.findViewById(R.id.recyclerView);
         if (recyclerView == null) {
             Log.d("list", "null!!!");
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList);
-        recyclerView.setAdapter(applicationAdapter);
+        
 
         fab = view.findViewById(R.id.addApplicationFAB);
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddApplicationActivity.class);
             startActivity(intent);
         });
+
+        userID = LoginActivity.userID;
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        databaseReference = db.getReference(Application.class.getSimpleName()+ "/" +userID);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                applicationList = updateFromSnapshot(snapshot);
+                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList);
+                recyclerView.setAdapter(applicationAdapter);
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Log.d(TAG, "onDataChange -> companyName = " + snap.child("companyName").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "onCancelled");
+            }
+        });
+
+
         return view;
+    }
+
+    private List<Application> updateFromSnapshot(DataSnapshot snapshot) {
+        List<Application> applicationList = new ArrayList<>();
+        for (DataSnapshot snap : snapshot.getChildren()) {
+            String companyName = snap.child("companyName").getValue(String.class);
+            String jobType = snap.child("jobType").getValue(String.class);
+            String positionType = snap.child("positionType").getValue(String.class);
+            String referrer = snap.child("referer").getValue(String.class);
+            String status = snap.child("status").getValue(String.class);
+            String applicationDate = snap.child("applicationDate").getValue(String.class);
+            String priority = snap.child("priority").getValue(String.class);
+            String interviewDate = snap.child("interviewDate").getValue(String.class);
+            String notes = snap.child("notes").getValue(String.class);
+            String startDate = snap.child("startDate").getValue(String.class);
+            applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes));
+        }
+        return applicationList;
     }
 
 

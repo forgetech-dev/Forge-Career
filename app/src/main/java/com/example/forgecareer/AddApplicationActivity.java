@@ -1,9 +1,11 @@
 package com.example.forgecareer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,6 +13,11 @@ import android.widget.Toast;
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.db.ApplicationDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddApplicationActivity extends AppCompatActivity {
 
@@ -18,6 +25,10 @@ public class AddApplicationActivity extends AppCompatActivity {
     EditText applicationDateEditText, interviewDateEditText, startDateEditText, notesEditText;
 
     FloatingActionButton addApplicationCheckFAB;
+
+    String TAG = "AddApplicationActivity";
+
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +61,10 @@ public class AddApplicationActivity extends AppCompatActivity {
                 }).addOnFailureListener(er -> {
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 });
+                finish();
             }
         });
+
     }
 
     public boolean checkInput() {
