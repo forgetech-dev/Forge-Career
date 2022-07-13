@@ -38,6 +38,7 @@ public class CompanyFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     public static List<Application> applicationList;
+    public static List<String> keyList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -94,7 +95,7 @@ public class CompanyFragment extends Fragment {
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        
+
 
         fab = view.findViewById(R.id.addApplicationFAB);
         fab.setOnClickListener(v -> {
@@ -109,12 +110,15 @@ public class CompanyFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                applicationList = updateFromSnapshot(snapshot);
-                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList);
-                recyclerView.setAdapter(applicationAdapter);
+                keyList = new ArrayList<>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    Log.d(TAG, "onDataChange -> companyName = " + snap.child("companyName").getValue(String.class));
+                    keyList.add(snap.getKey());
+                    Log.d(TAG, "onDataChange -> companyName = " + snap.getKey().toString());
                 }
+                applicationList = updateFromSnapshot(snapshot);
+                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList, keyList);
+                recyclerView.setAdapter(applicationAdapter);
+
             }
 
             @Override

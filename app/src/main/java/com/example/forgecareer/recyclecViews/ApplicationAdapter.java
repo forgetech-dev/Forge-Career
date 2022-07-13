@@ -1,5 +1,6 @@
 package com.example.forgecareer.recyclecViews;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.forgecareer.EditApplicationActivity;
 import com.example.forgecareer.R;
 import com.example.forgecareer.db.Application;
 
@@ -20,14 +22,16 @@ import java.util.List;
 public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.ApplicationVH>{
     private static final String TAG = "ApplicationAdapter";
     List<Application> applicationList;
+    List<String> keyList;
 
 
     /**
      * Constructor
      * @param applicationList
      */
-    public ApplicationAdapter(List<Application> applicationList) {
+    public ApplicationAdapter(List<Application> applicationList, List<String> keyList) {
         this.applicationList = applicationList;
+        this.keyList = keyList;
     }
 
     @NonNull
@@ -50,6 +54,8 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         holder.startDateTextView.setText(application.getStartDate());
         holder.applicationDateTextView.setText(application.getApplicationDate());
         holder.interviewTextView.setText(application.getInterviewDate());
+
+        holder.applicationKey = keyList.get(position);
 
 
 
@@ -94,6 +100,8 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         TextView listBackgroundTextView, companyTextView, jobTypeTextView, positionTextView, priorityTextView, notesTextView;
         TextView refererTextView, startDateTextView, applicationDateTextView, interviewTextView;
 
+        String applicationKey;
+
         public ApplicationVH(@NonNull final View itemView) {
             super(itemView);
 
@@ -121,6 +129,15 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
                     application.setExpanded(!application.isExpanded());
                     notifyItemChanged(getAdapterPosition());
 
+                }
+            });
+            listBackgroundTextView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(v.getContext(), EditApplicationActivity.class);
+                    intent.putExtra("applicationKey", applicationKey);
+                    v.getContext().startActivity(intent);
+                    return false;
                 }
             });
         }
