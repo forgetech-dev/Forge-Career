@@ -18,19 +18,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replaceFragment(new HomeFragment());
+        HomeFragment homeFragment = new HomeFragment();
+        CompanyFragment companyFragment = new CompanyFragment();
+        InterviewFragment interviewFragment = new InterviewFragment();
+        replaceFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.page_1:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(homeFragment);
                     break;
                 case R.id.page_2:
-                    replaceFragment(new CompanyFragment());
+                    replaceFragment(companyFragment);
                     break;
                 case R.id.page_3:
-                    replaceFragment(new InterviewFragment());
+                    replaceFragment(interviewFragment);
                     break;
             }
             return true;
