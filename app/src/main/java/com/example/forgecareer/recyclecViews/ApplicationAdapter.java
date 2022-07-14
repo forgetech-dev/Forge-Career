@@ -17,21 +17,29 @@ import com.example.forgecareer.EditApplicationActivity;
 import com.example.forgecareer.R;
 import com.example.forgecareer.db.Application;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.ApplicationVH>{
     private static final String TAG = "ApplicationAdapter";
     List<Application> applicationList;
     List<String> keyList;
+    Map<String, Application> applicationMap;
 
 
     /**
      * Constructor
-     * @param applicationList
+     * @param applicationMap
      */
-    public ApplicationAdapter(List<Application> applicationList, List<String> keyList) {
-        this.applicationList = applicationList;
-        this.keyList = keyList;
+    public ApplicationAdapter(Map<String, Application> applicationMap) {
+        this.applicationMap = applicationMap;
+        this.keyList = new ArrayList<>();
+        this.applicationList = new ArrayList<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            keyList.add(entry.getKey());
+            applicationList.add(entry.getValue());
+        }
     }
 
     @NonNull

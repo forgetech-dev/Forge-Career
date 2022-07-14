@@ -25,6 +25,9 @@ public class EditApplicationActivity extends AppCompatActivity {
 
     FloatingActionButton addApplicationCheckFAB;
 
+    Map<String, Application> applicationMap;
+    Application currentApplication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class EditApplicationActivity extends AppCompatActivity {
         // Init database reference
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference(Application.class.getSimpleName()+ "/" + LoginActivity.userID + "/" + applicationKey);
+
         companyNameEditText = findViewById(R.id.companyNameEditTextEditApplication);
         jobTypeEditText = findViewById(R.id.jobTypeEditTextEditApplication);
         statusEditText = findViewById(R.id.statusEditTextEditApplication);
@@ -47,6 +51,19 @@ public class EditApplicationActivity extends AppCompatActivity {
         startDateEditText = findViewById(R.id.startDateEditTextEditApplication);
         notesEditText = findViewById(R.id.notesEditTextEditApplication);
 
+        applicationMap = CompanyFragment.applicationMap;
+        currentApplication = applicationMap.get(applicationKey);
+
+        companyNameEditText.setText(currentApplication.getCompanyName());
+        jobTypeEditText.setText(currentApplication.getJobType());
+        statusEditText.setText(currentApplication.getStatus());
+        positionTypeEditText.setText(currentApplication.getPositionType());
+        refererEditText.setText(currentApplication.getReferer());
+        priorityEditText.setText(currentApplication.getPriority());
+        applicationDateEditText.setText(currentApplication.getApplicationDate());
+        interviewDateEditText.setText(currentApplication.getInterviewDate());
+        startDateEditText.setText(currentApplication.getStartDate());
+        notesEditText.setText(currentApplication.getNotes());
 
 
         addApplicationCheckFAB = findViewById(R.id.addApplicationCheckFABEditApplication);
@@ -89,59 +106,6 @@ public class EditApplicationActivity extends AppCompatActivity {
         return true;
     }
 
-    public Application createApplication() {
-        // companyName (mandatory)
-        String companyName = companyNameEditText.getText().toString();
-
-        // jobType (mandatory)
-        String jobType = jobTypeEditText.getText().toString();
-
-        // positionType (optional) -> default: N/A
-        String positionType = positionTypeEditText.getText().toString();
-        if (positionType.equals("")) {
-            positionType = "N/A";
-        }
-
-        // referrer (optional) -> default: N/A
-        String referrer = refererEditText.getText().toString();
-        if (referrer.equals("")) {
-            referrer = "N/A";
-        }
-
-        // status (mandatory)
-        String status = statusEditText.getText().toString();
-
-        // applicationDate (optional) -> default: N/A
-        String applicationDate = applicationDateEditText.getText().toString();
-        if (applicationDate.equals("")) {
-            applicationDate = "N/A";
-        }
-
-        // priority (mandatory) -> default: Medium
-        String priority = priorityEditText.getText().toString();
-        if (priority.equals("")) {
-            priority = "Medium";
-        }
-
-        // interviewDate (optional) -> default: N/A
-        String interviewDate = interviewDateEditText.getText().toString();
-        if (interviewDate.equals("")) {
-            interviewDate = "N/A";
-        }
-
-        // startDate (optional) -> default: Summer23
-        String startDate = startDateEditText.getText().toString();
-        if (startDate.equals("")) {
-            startDate = "Summer23";
-        }
-
-        // notes (optional) -> default:
-        String notes = notesEditText.getText().toString();
-
-        // Create new object
-        Application application = new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes);
-        return application;
-    }
 
     public Map<String, Object> createApplicationMap() {
         // companyName (mandatory)

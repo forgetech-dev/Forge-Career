@@ -23,7 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,7 @@ public class CompanyFragment extends Fragment {
 
     public static List<Application> applicationList;
     public static List<String> keyList;
+    public static Map<String, Application> applicationMap;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -115,8 +118,8 @@ public class CompanyFragment extends Fragment {
                     keyList.add(snap.getKey());
                     Log.d(TAG, "onDataChange -> companyName = " + snap.getKey().toString());
                 }
-                applicationList = updateFromSnapshot(snapshot);
-                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationList, keyList);
+                applicationMap = updateMapFromSnapshot(snapshot);
+                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationMap);
                 recyclerView.setAdapter(applicationAdapter);
 
             }
@@ -147,6 +150,29 @@ public class CompanyFragment extends Fragment {
             applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes));
         }
         return applicationList;
+    }
+    private Map<String, Application> updateMapFromSnapshot(DataSnapshot snapshot) {
+        List<Application> applicationList = new ArrayList<>();
+        Map<String, Application> applicationMap = new HashMap<>();
+        for (DataSnapshot snap : snapshot.getChildren()) {
+            String companyName = snap.child("companyName").getValue(String.class);
+            String jobType = snap.child("jobType").getValue(String.class);
+            String positionType = snap.child("positionType").getValue(String.class);
+            String referrer = snap.child("referer").getValue(String.class);
+            String status = snap.child("status").getValue(String.class);
+            String applicationDate = snap.child("applicationDate").getValue(String.class);
+            String priority = snap.child("priority").getValue(String.class);
+            String interviewDate = snap.child("interviewDate").getValue(String.class);
+            String notes = snap.child("notes").getValue(String.class);
+            String startDate = snap.child("startDate").getValue(String.class);
+            Application application = new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes);
+            applicationList.add(application);
+
+            String applicationKey = snap.getKey();
+            applicationMap.put(applicationKey, application);
+        }
+        return applicationMap;
+
     }
 
 
