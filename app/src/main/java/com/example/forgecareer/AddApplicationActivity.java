@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.db.ApplicationDAO;
+import com.example.forgecareer.utils.DateParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -139,6 +140,7 @@ public class AddApplicationActivity extends AppCompatActivity {
 
         // notes (optional) -> default:
         String notes = notesEditText.getText().toString();
+
 
         // Create new object
         Application application = new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes);

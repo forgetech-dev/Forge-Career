@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
-import com.example.forgecareer.db.ApplicationDAO;
+import com.example.forgecareer.utils.DateParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -156,6 +156,10 @@ public class EditApplicationActivity extends AppCompatActivity {
         // notes (optional) -> default:
         String notes = notesEditText.getText().toString();
 
+        // updateDate (automatic)
+        String updateDate = DateParser.getCurrentDateTimeString();
+        
+
         // Create new object
         Map<String, Object> applicationMap = new HashMap<>();
         applicationMap.put("applicationDate", applicationDate);
@@ -169,6 +173,9 @@ public class EditApplicationActivity extends AppCompatActivity {
         applicationMap.put("referer", referrer);
         applicationMap.put("startDate", startDate);
         applicationMap.put("status", status);
+        applicationMap.put("updateDate", updateDate);
+
+
         return applicationMap;
     }
 

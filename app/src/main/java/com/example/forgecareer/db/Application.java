@@ -1,10 +1,9 @@
 package com.example.forgecareer.db;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import com.example.forgecareer.utils.DateParser;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Application {
 
@@ -31,6 +30,9 @@ public class Application {
     String interviewDate;
     String notes;
     Boolean expanded;
+    String createDate;
+    String updateDate;
+
 
     /**
      * Empty constructor
@@ -60,6 +62,8 @@ public class Application {
         this.interviewDate = interviewDate;
         this.notes = notes;
         this.expanded = false;
+        this.createDate = DateParser.getCurrentDateTimeString();
+        this.updateDate = DateParser.getCurrentDateTimeString();
     }
 
     public boolean isExpanded() {
@@ -148,6 +152,23 @@ public class Application {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+
+    public Boolean getExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(Boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 
     public LocalDate applicationDateToDate() {

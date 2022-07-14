@@ -7,19 +7,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateParser {
-    SimpleDateFormat sdFormat ;
+
 
     @SuppressLint("SimpleDateFormat")
     public DateParser() {
-        sdFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd/yyyy");
     }
 
-    public String dateToString(Date date) {
+    public static String dateToString(Date date) {
+        SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd/yyyy");
         return sdFormat.format(date);
     }
 
-    public Date stringToDate(String dateString) {
+    public static Date stringToDate(String dateString) {
         Date date = null;
+        SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd/yyyy");
         try{
             date = sdFormat.parse(dateString);
         }
@@ -27,5 +29,17 @@ public class DateParser {
             except.printStackTrace();
         }
         return date;
+    }
+
+    public static  String getCurrentDateTimeString() {
+        SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date date = new Date();
+        return sdFormat.format(date);
+    }
+
+    public static String getCurrentDateString() {
+        SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        return sdFormat.format(date);
     }
 }
