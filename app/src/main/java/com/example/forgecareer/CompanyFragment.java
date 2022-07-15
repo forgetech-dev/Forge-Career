@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
@@ -54,6 +56,8 @@ public class CompanyFragment extends Fragment {
     String TAG = "CompanyFragment";
     String userID;
     private DatabaseReference databaseReference;
+    private ArrayList<Map.Entry<String, Application>> sortedEntries;
+    ApplicationAdapter applicationAdapter;
 
 
 
@@ -125,12 +129,12 @@ public class CompanyFragment extends Fragment {
 //                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
 //                }
                 ApplicationSorter applicationSorter = new ApplicationSorter(applicationMap);
-                ArrayList<Map.Entry<String, Application>> sortedEntries = applicationSorter.sortByCreateDate();
+                sortedEntries = applicationSorter.sortByCreateDate();
                 for (Map.Entry<String, Application> entry : sortedEntries) {
                     Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
                 }
 
-                ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationMap);
+                applicationAdapter = new ApplicationAdapter(sortedEntries);
                 recyclerView.setAdapter(applicationAdapter);
 
             }
@@ -140,10 +144,33 @@ public class CompanyFragment extends Fragment {
                 Log.d(TAG, "onCancelled");
             }
         });
-
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(recyclerView);
 
         return view;
     }
+
+    ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+
+
+            String applicationKey = applicationAdapter.applicationEntries.get(position).getKey();
+            Toast.makeText(getContext(), "removing item at position: " + position, Toast.LENGTH_SHORT).show();
+
+            FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+            DatabaseReference deleteDatabaseReference = db.getReference(Application.class.getSimpleName()+ "/" +userID + "/" + applicationKey);;
+            deleteDatabaseReference.removeValue();
+            applicationAdapter.notifyDataSetChanged();
+        }
+    };
 
     private List<Application> updateFromSnapshot(DataSnapshot snapshot) {
         List<Application> applicationList = new ArrayList<>();
@@ -191,14 +218,4 @@ public class CompanyFragment extends Fragment {
 
     }
 
-
-    private void initApplicationData() {
-        applicationList = new ArrayList<>();
-        applicationList.add(new Application("Amazon", "Intern", "SWE", "Summer23", "Nick", "Applied", "09/01/2022", "Ultra", "N/A", "this is the note for Amazon application"));
-        applicationList.add(new Application("Google", "FullTime", "SDE", "Summer23", "Tom", "Interview", "09/02/2022", "High", "10/05/2022", "this is the note for google application"));
-        applicationList.add(new Application("Waymo", "Intern", "FullStack", "Summer23", "Kshitiz", "Interested", "N/A", "High", "N/A", "This is the note for waymo application test row, trying to make it longer so that it can be a little bit different from the other two rows."));
-        applicationList.add(new Application("Meta", "Intern", "SWE", "Summer23", "Ouyang", "Applied", "08/01/2022", "Ultra", "N/A", "This is a note for the meta application"));
-        applicationList.add(new Application("Uber", "FullTime", "SDE", "Summer23", "N/A", "OA", "08/05/2022", "High", "N/A", "This is a note for uber page"));
-        applicationList.add(new Application("Netflix", "FullTime", "PM", "Summer23", "N/A", "Rejected", "08/02/2022", "Medium", "N/A", "This is a note for netflix page, although it is rejected here, I still hope I can get a job in netflix"));
-    }
 }

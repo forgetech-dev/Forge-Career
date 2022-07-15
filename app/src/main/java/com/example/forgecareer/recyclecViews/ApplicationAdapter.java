@@ -23,19 +23,19 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
     private static final String TAG = "ApplicationAdapter";
     List<Application> applicationList;
     List<String> keyList;
-    Map<String, Application> applicationMap;
+    public ArrayList<Map.Entry<String, Application>> applicationEntries;
 
 
     /**
      * Constructor
      * @param applicationMap
      */
-    public ApplicationAdapter(Map<String, Application> applicationMap) {
-        this.applicationMap = applicationMap;
+    public ApplicationAdapter(ArrayList<Map.Entry<String, Application>> applicationEntries) {
+        this.applicationEntries = applicationEntries;
         this.keyList = new ArrayList<>();
         this.applicationList = new ArrayList<>();
 
-        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+        for (Map.Entry<String, Application> entry : applicationEntries) {
             keyList.add(entry.getKey());
             applicationList.add(entry.getValue());
         }

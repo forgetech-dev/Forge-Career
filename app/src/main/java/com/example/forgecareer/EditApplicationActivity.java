@@ -73,7 +73,6 @@ public class EditApplicationActivity extends AppCompatActivity {
             } else {
                 Map<String, Object> applicationMap = createApplicationMap();
                 databaseReference.updateChildren(applicationMap);
-
                 finish();
             }
         });
