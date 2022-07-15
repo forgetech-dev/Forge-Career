@@ -25,4 +25,27 @@ public class Constants {
             "Low"
     };
 
+    public static final String[] FILTER_OPTIONS = {
+            "filter",
+            "Intern",
+            "Full Time",
+            "Interested",
+            "Applied",
+            "OA",
+            "Interview",
+            "Rejected",
+            "Offer",
+            "Refereed"
+    };
+
+    public static final String[] SORT_OPTIONS = {
+            "sort",
+            "Priority",
+            "Create Date",
+            "Interview Date",
+            "Applied Date",
+            "Status",
+            "Status (reversed)"
+    };
+
 }

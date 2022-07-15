@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Filter {
@@ -49,6 +50,20 @@ public class Filter {
             }
             else if (cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
                     cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByLoseSearch(Map<String, Application> applicationMap, String searchText) {
+        if (searchText.equals("")) {
+            return applicationMap;
+        }
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            String companyName = entry.getValue().getCompanyName();
+            if  (companyName.toLowerCase().contains(searchText.toLowerCase())) {
                 filteredMap.put(entry.getKey(), entry.getValue());
             }
         }

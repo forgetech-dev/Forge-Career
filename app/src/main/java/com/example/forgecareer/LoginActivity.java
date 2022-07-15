@@ -66,17 +66,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button btnOverride = findViewById(R.id.buttonOverride);
-        btnOverride.setOnClickListener(item -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnFirebaseTest = findViewById(R.id.buttonFirebaseTest);
-        btnFirebaseTest.setOnClickListener(item -> {
-            Intent intent = new Intent(this, FirebaseActivityTemp.class);
-            startActivity(intent);
-        });
+//        Button btnOverride = findViewById(R.id.buttonOverride);
+//        btnOverride.setOnClickListener(item -> {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        });
+//
+//        Button btnFirebaseTest = findViewById(R.id.buttonFirebaseTest);
+//        btnFirebaseTest.setOnClickListener(item -> {
+//            Intent intent = new Intent(this, FirebaseActivityTemp.class);
+//            startActivity(intent);
+//        });
     }
 
     // [START on_start_check_user]

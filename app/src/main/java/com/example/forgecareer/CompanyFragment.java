@@ -9,15 +9,22 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
 import com.example.forgecareer.utils.ApplicationSorter;
+import com.example.forgecareer.utils.Constants;
+import com.example.forgecareer.utils.DropdownAdapter;
+import com.example.forgecareer.utils.Filter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,17 +53,21 @@ public class CompanyFragment extends Fragment {
     public static List<String> keyList;
     public static Map<String, Application> applicationMap;
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
+    TextView searchTextView;
 
     String TAG = "CompanyFragment";
     String userID;
     private DatabaseReference databaseReference;
     private ArrayList<Map.Entry<String, Application>> sortedEntries;
+    private Spinner sortSpinner;
+    private Spinner filterSpinner;
     ApplicationAdapter applicationAdapter;
 
 
@@ -103,6 +114,31 @@ public class CompanyFragment extends Fragment {
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        searchTextView = view.findViewById(R.id.searchEditTextView);
+        searchTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "beforeTextChanged");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateRecyclerView();
+                Log.d(TAG, "onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG, "afterTextChanged");
+            }
+        });
+        sortSpinner = view.findViewById(R.id.sortSpinner);
+        DropdownAdapter sortAdapter = new DropdownAdapter(getContext(), Constants.SORT_OPTIONS);
+        sortSpinner.setAdapter(sortAdapter);
+        filterSpinner = view.findViewById(R.id.filterSpinner);
+        DropdownAdapter filterAdapter = new DropdownAdapter(getContext(), Constants.FILTER_OPTIONS);
+        filterSpinner.setAdapter(filterAdapter);
+
 
 
         fab = view.findViewById(R.id.addApplicationFAB);
@@ -124,19 +160,16 @@ public class CompanyFragment extends Fragment {
                     Log.d(TAG, "onDataChange -> companyName = " + snap.getKey().toString());
                 }
                 applicationMap = updateMapFromSnapshot(snapshot);
+                Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
                 MainActivity.applicationMap = applicationMap;
 //                for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
 //                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
 //                }
-                ApplicationSorter applicationSorter = new ApplicationSorter(applicationMap);
-                sortedEntries = applicationSorter.sortByCreateDate();
-                for (Map.Entry<String, Application> entry : sortedEntries) {
-                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
-                }
 
+                ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
+                sortedEntries = applicationSorter.sortByCreateDate();
                 applicationAdapter = new ApplicationAdapter(sortedEntries);
                 recyclerView.setAdapter(applicationAdapter);
-
             }
 
             @Override
@@ -213,6 +246,14 @@ public class CompanyFragment extends Fragment {
         }
         return applicationMap;
 
+    }
+
+    private void updateRecyclerView() {
+        Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
+        ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
+        sortedEntries = applicationSorter.sortByCreateDate();
+        applicationAdapter = new ApplicationAdapter(sortedEntries);
+        recyclerView.setAdapter(applicationAdapter);
     }
 
 }

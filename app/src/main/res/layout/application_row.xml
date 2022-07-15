@@ -51,6 +51,7 @@
                 android:padding="16dp"
                 android:text="Company"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/statusImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
