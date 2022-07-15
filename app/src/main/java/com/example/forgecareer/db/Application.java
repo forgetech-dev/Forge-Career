@@ -169,15 +169,7 @@ public class Application {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-
-
-    public Boolean getExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(Boolean expanded) {
-        this.expanded = expanded;
-    }
+    
 
     public String getUpdateDate() {
         return updateDate;
