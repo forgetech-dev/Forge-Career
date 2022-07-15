@@ -36,6 +36,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         this.applicationMap = applicationMap;
         this.keyList = new ArrayList<>();
         this.applicationList = new ArrayList<>();
+
         for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
             keyList.add(entry.getKey());
             applicationList.add(entry.getValue());

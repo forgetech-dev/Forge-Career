@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -123,7 +124,7 @@ public class HomeFragment extends Fragment {
 
     private void setupPieChart() {
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setUsePercentValues(true);
+        pieChart.setUsePercentValues(false);
         pieChart.setEntryLabelTextSize(12);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Overview");
@@ -155,22 +156,22 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "rejectedCount: " + rejectedCount);
         Log.d(TAG, "offerCount: " + offerCount);
         if (interestedCount > 0) {
-            entries.add(new PieEntry(interestedCount/sumCount, "Interested"));
+            entries.add(new PieEntry(interestedCount, "Interested"));
         }
         if (appliedCount > 0) {
-            entries.add(new PieEntry(appliedCount/sumCount, "Applied"));
+            entries.add(new PieEntry(appliedCount, "Applied"));
         }
         if (OACount > 0) {
-            entries.add(new PieEntry(OACount/sumCount, "OA"));
+            entries.add(new PieEntry(OACount, "OA"));
         }
         if (interviewCount > 0) {
-            entries.add(new PieEntry(interviewCount/sumCount, "Interview"));
+            entries.add(new PieEntry(interviewCount, "Interview"));
         }
         if (rejectedCount > 0) {
-            entries.add(new PieEntry(rejectedCount/sumCount, "Rejected"));
+            entries.add(new PieEntry(rejectedCount, "Rejected"));
         }
         if (offerCount > 0) {
-            entries.add(new PieEntry(offerCount/sumCount, "Offer"));
+            entries.add(new PieEntry(offerCount, "Offer"));
         }
 //        entries.add(new PieEntry(0.5f, "A"));
 //        entries.add(new PieEntry(0.5f, "B"));
@@ -188,7 +189,12 @@ public class HomeFragment extends Fragment {
 
         PieData data = new PieData(dataSet);
         data.setDrawValues(true);
-        data.setValueFormatter(new PercentFormatter(pieChart));
+        data.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int)value);
+            }
+        });
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
 

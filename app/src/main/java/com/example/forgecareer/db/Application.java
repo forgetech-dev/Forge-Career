@@ -66,6 +66,22 @@ public class Application {
         this.updateDate = DateParser.getCurrentDateTimeString();
     }
 
+    public Application(String companyName, String jobType, String positionType, String startDate, String referer, String status, String applicationDate, String priority, String interviewDate, String notes, String createDate, String updateDate) {
+        this.companyName = companyName;
+        this.jobType = jobType;
+        this.positionType = positionType;
+        this.startDate = startDate;
+        this.referer = referer;
+        this.status = status;
+        this.applicationDate = applicationDate;
+        this.priority = priority;
+        this.interviewDate = interviewDate;
+        this.notes = notes;
+        this.expanded = false;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
     public boolean isExpanded() {
         return expanded;
     }
@@ -169,6 +185,14 @@ public class Application {
 
     public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     public LocalDate applicationDateToDate() {

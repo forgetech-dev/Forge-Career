@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
+import com.example.forgecareer.utils.ApplicationSorter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -119,6 +120,15 @@ public class CompanyFragment extends Fragment {
                     Log.d(TAG, "onDataChange -> companyName = " + snap.getKey().toString());
                 }
                 applicationMap = updateMapFromSnapshot(snapshot);
+//                for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+//                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
+//                }
+                ApplicationSorter applicationSorter = new ApplicationSorter(applicationMap);
+                ArrayList<Map.Entry<String, Application>> sortedEntries = applicationSorter.sortByCreateDate();
+                for (Map.Entry<String, Application> entry : sortedEntries) {
+                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
+                }
+
                 ApplicationAdapter applicationAdapter = new ApplicationAdapter(applicationMap);
                 recyclerView.setAdapter(applicationAdapter);
 
@@ -147,7 +157,10 @@ public class CompanyFragment extends Fragment {
             String interviewDate = snap.child("interviewDate").getValue(String.class);
             String notes = snap.child("notes").getValue(String.class);
             String startDate = snap.child("startDate").getValue(String.class);
-            applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes));
+            String createDate = snap.child("createDate").getValue(String.class);
+            String updateDate = snap.child("updateDate").getValue(String.class);
+            Log.d(TAG, createDate);
+            applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes, createDate, updateDate));
         }
         return applicationList;
     }
@@ -165,7 +178,9 @@ public class CompanyFragment extends Fragment {
             String interviewDate = snap.child("interviewDate").getValue(String.class);
             String notes = snap.child("notes").getValue(String.class);
             String startDate = snap.child("startDate").getValue(String.class);
-            Application application = new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes);
+            String createDate = snap.child("createDate").getValue(String.class);
+            String updateDate = snap.child("updateDate").getValue(String.class);
+            Application application = new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes, createDate, updateDate);
             applicationList.add(application);
 
             String applicationKey = snap.getKey();
