@@ -169,7 +169,7 @@ public class Application {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    
+
 
     public String getUpdateDate() {
         return updateDate;

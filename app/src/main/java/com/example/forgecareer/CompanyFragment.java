@@ -160,15 +160,12 @@ public class CompanyFragment extends Fragment {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
 
-
             String applicationKey = applicationAdapter.applicationEntries.get(position).getKey();
-            Toast.makeText(getContext(), "removing item at position: " + position, Toast.LENGTH_SHORT).show();
-
             FirebaseDatabase db = FirebaseDatabase.getInstance();
-
             DatabaseReference deleteDatabaseReference = db.getReference(Application.class.getSimpleName()+ "/" +userID + "/" + applicationKey);;
             deleteDatabaseReference.removeValue();
-            applicationAdapter.notifyDataSetChanged();
+            applicationAdapter.applicationEntries.remove(position);
+//            applicationAdapter.notifyDataSetChanged();
         }
     };
 
