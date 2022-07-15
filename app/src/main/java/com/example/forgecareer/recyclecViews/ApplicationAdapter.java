@@ -1,13 +1,11 @@
 package com.example.forgecareer.recyclecViews;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -117,15 +115,15 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
             statusImageView = itemView.findViewById(R.id.statusImageView);
 
             listBackgroundTextView = itemView.findViewById(R.id.listBackgroundTextView);
-            companyTextView = itemView.findViewById(R.id.companyTextView);
-            jobTypeTextView = itemView.findViewById(R.id.jobTypeTextView);
+            companyTextView = itemView.findViewById(R.id.interviewCompanyTextView);
+            jobTypeTextView = itemView.findViewById(R.id.currentInterviewDateTextView);
             positionTextView = itemView.findViewById(R.id.positionTextView);
             priorityTextView = itemView.findViewById(R.id.priorityTextView);
             notesTextView = itemView.findViewById(R.id.notesTextView);
             refererTextView = itemView.findViewById(R.id.refererTextView);
             startDateTextView = itemView.findViewById(R.id.startDateTextView);
             applicationDateTextView = itemView.findViewById(R.id.appDateTextView);
-            interviewTextView = itemView.findViewById(R.id.interviewDateTextView);
+            interviewTextView = itemView.findViewById(R.id.jobTypeTextView);
 
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
 

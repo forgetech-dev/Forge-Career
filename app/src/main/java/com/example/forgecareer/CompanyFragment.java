@@ -120,6 +120,7 @@ public class CompanyFragment extends Fragment {
                     Log.d(TAG, "onDataChange -> companyName = " + snap.getKey().toString());
                 }
                 applicationMap = updateMapFromSnapshot(snapshot);
+                MainActivity.applicationMap = applicationMap;
 //                for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
 //                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
 //                }

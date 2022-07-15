@@ -109,6 +109,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 applicationMap = updateMapFromSnapshot(snapshot);
+                MainActivity.applicationMap = applicationMap;
                 setupPieChart();
                 loadPieChartData(applicationMap);
                 Log.d(TAG, applicationMap.toString());
@@ -226,6 +227,5 @@ public class HomeFragment extends Fragment {
             applicationMap.put(applicationKey, application);
         }
         return applicationMap;
-
     }
 }
