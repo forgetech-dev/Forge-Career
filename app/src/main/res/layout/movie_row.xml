@@ -23,14 +23,14 @@
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/status_interested"
                 app:layout_constraintBottom_toTopOf="@+id/expandableLayout"
-                app:layout_constraintEnd_toStartOf="@+id/companyTextView"
+                app:layout_constraintEnd_toStartOf="@+id/interviewCompanyTextView"
                 app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/companyTextView"
+                android:id="@+id/interviewCompanyTextView"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jobTypeTextView"
+                android:id="@+id/currentInterviewDateTextView"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -51,7 +51,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/companyTextView"
+                app:layout_constraintStart_toEndOf="@+id/interviewCompanyTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/companyTextView">
+                app:layout_constraintTop_toBottomOf="@id/interviewCompanyTextView">
 
                 <TextView
                     android:id="@+id/positionTextView"

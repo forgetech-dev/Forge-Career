@@ -158,7 +158,7 @@ public class EditApplicationActivity extends AppCompatActivity {
 
         // updateDate (automatic)
         String updateDate = DateParser.getCurrentDateTimeString();
-        
+
 
         // Create new object
         Map<String, Object> applicationMap = new HashMap<>();

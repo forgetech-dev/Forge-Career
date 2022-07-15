@@ -7,30 +7,38 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.forgecareer.db.Application;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
+    public static Map<String, Application> applicationMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replaceFragment(new HomeFragment());
+        HomeFragment homeFragment = new HomeFragment();
+        CompanyFragment companyFragment = new CompanyFragment();
+        InterviewFragment interviewFragment = new InterviewFragment();
+        replaceFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.page_1:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(homeFragment);
                     break;
                 case R.id.page_2:
-                    replaceFragment(new CompanyFragment());
+                    replaceFragment(companyFragment);
                     break;
                 case R.id.page_3:
-                    replaceFragment(new InterviewFragment());
+                    replaceFragment(interviewFragment);
                     break;
             }
             return true;
@@ -43,4 +51,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
+
 }

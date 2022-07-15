@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.888" />
 
             <TextView
-                android:id="@+id/companyTextView"
+                android:id="@+id/interviewCompanyTextView"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jobTypeTextView"
+                android:id="@+id/currentInterviewDateTextView"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -66,7 +66,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/companyTextView"
+                app:layout_constraintStart_toEndOf="@+id/interviewCompanyTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +77,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/companyTextView">
+                app:layout_constraintTop_toBottomOf="@id/interviewCompanyTextView">
 
                 <TextView
                     android:id="@+id/positionTextView"
@@ -228,7 +228,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
-                    android:id="@+id/interviewDateTextView"
+                    android:id="@+id/jobTypeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="90dp"
