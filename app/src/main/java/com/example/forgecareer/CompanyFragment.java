@@ -1,6 +1,9 @@
 package com.example.forgecareer;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,17 +54,14 @@ public class CompanyFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
 
     public static List<Application> applicationList;
     public static List<String> keyList;
     public static Map<String, Application> applicationMap;
 
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
@@ -66,9 +71,14 @@ public class CompanyFragment extends Fragment {
     String userID;
     private DatabaseReference databaseReference;
     private ArrayList<Map.Entry<String, Application>> sortedEntries;
-    private Spinner sortSpinner;
-    private Spinner filterSpinner;
+
+    Button sortButton;
+    Button filterButton;
     ApplicationAdapter applicationAdapter;
+
+    final String DEFAULT_SORT_OPTION = "Create Date";
+
+    String sortBy = DEFAULT_SORT_OPTION;
 
 
 
@@ -76,31 +86,15 @@ public class CompanyFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CompanyFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static CompanyFragment newInstance(String param1, String param2) {
         CompanyFragment fragment = new CompanyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -132,12 +126,16 @@ public class CompanyFragment extends Fragment {
                 Log.d(TAG, "afterTextChanged");
             }
         });
-        sortSpinner = view.findViewById(R.id.sortSpinner);
-        DropdownAdapter sortAdapter = new DropdownAdapter(getContext(), Constants.SORT_OPTIONS);
-        sortSpinner.setAdapter(sortAdapter);
-        filterSpinner = view.findViewById(R.id.filterSpinner);
-        DropdownAdapter filterAdapter = new DropdownAdapter(getContext(), Constants.FILTER_OPTIONS);
-        filterSpinner.setAdapter(filterAdapter);
+
+        sortButton = view.findViewById(R.id.sortButton);
+        filterButton = view.findViewById(R.id.filterButton);
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSortDialog(sortBy);
+            }
+        });
+
 
 
 
@@ -181,6 +179,92 @@ public class CompanyFragment extends Fragment {
         helper.attachToRecyclerView(recyclerView);
 
         return view;
+    }
+
+    private void showSortDialog(String sortOption) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet);
+
+        RadioButton sortSelection1 = dialog.findViewById(R.id.sortSelection1);
+        RadioButton sortSelection2 = dialog.findViewById(R.id.sortSelection2);
+        RadioButton sortSelection3 = dialog.findViewById(R.id.sortSelection3);
+        RadioButton sortSelection4 = dialog.findViewById(R.id.sortSelection4);
+        RadioButton sortSelection5 = dialog.findViewById(R.id.sortSelection5);
+        RadioButton sortSelection6 = dialog.findViewById(R.id.sortSelection6);
+        ArrayList<RadioButton> selections = new ArrayList<>();
+        selections.add(sortSelection1);
+        selections.add(sortSelection2);
+        selections.add(sortSelection3);
+        selections.add(sortSelection4);
+        selections.add(sortSelection5);
+        selections.add(sortSelection6);
+        Log.d(TAG, "sortOption: " + sortOption);
+        int sortPosition = 0;
+        for (int i = 1; i < Constants.SORT_OPTIONS.length; i++) {
+            if (sortOption.equals(Constants.SORT_OPTIONS[i])) {
+                sortPosition = i;
+            }
+        }
+        Log.d(TAG, "sortPosition: " + sortPosition);
+        if (sortPosition > 0) {
+            selections.get(sortPosition-1).setChecked(true);
+        }
+        sortSelection1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[1];
+                dialog.dismiss();
+            }
+        });
+        sortSelection2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[2];
+                dialog.dismiss();
+            }
+        });
+        sortSelection3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[3];
+                dialog.dismiss();
+            }
+        });
+        sortSelection4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[4];
+                dialog.dismiss();
+            }
+        });
+        sortSelection5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[5];
+                dialog.dismiss();
+            }
+        });
+        sortSelection6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortBy = Constants.SORT_OPTIONS[6];
+                dialog.dismiss();
+            }
+        });
+//
+//        editLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "editLayout::onClick", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
     ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -249,6 +333,7 @@ public class CompanyFragment extends Fragment {
     }
 
     private void updateRecyclerView() {
+        // Apply search filtering
         Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
         ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
         sortedEntries = applicationSorter.sortByCreateDate();

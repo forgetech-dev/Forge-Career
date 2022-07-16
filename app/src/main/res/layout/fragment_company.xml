@@ -47,30 +47,36 @@
 
         <EditText
             android:id="@+id/searchEditTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="163dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Search"
             android:inputType="textPersonName"
             app:layout_constraintStart_toEndOf="@+id/imageView13"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/sortSpinner"
-            android:layout_width="46dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/searchEditTextView" />
+        <Button
+            android:id="@+id/sortButton"
+            android:layout_width="64dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:text="sort"
+            android:textSize="8sp"
+            app:layout_constraintStart_toEndOf="@+id/searchEditTextView"
+            tools:layout_editor_absoluteY="3dp" />
 
-        <Spinner
-            android:id="@+id/filterSpinner"
-            android:layout_width="47dp"
-            android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/sortSpinner" />
+        <Button
+            android:id="@+id/filterButton"
+            android:layout_width="64dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:text="filter"
+            android:textSize="8sp"
+            app:layout_constraintStart_toEndOf="@+id/sortButton"
+            tools:layout_editor_absoluteY="2dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
