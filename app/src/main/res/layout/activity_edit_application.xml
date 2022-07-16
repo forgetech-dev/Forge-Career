@@ -10,12 +10,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         <EditText
             android:id="@+id/companyNameEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -37,12 +37,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication2"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         <EditText
             android:id="@+id/jobTypeEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -64,12 +64,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication3"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
         <EditText
             android:id="@+id/statusEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -92,12 +92,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication4"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
         <EditText
             android:id="@+id/positionTypeEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -119,12 +119,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication5"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +134,7 @@
         <EditText
             android:id="@+id/refererEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -146,12 +146,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication6"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +161,7 @@
         <EditText
             android:id="@+id/priorityEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -173,12 +173,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication7"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +188,7 @@
         <EditText
             android:id="@+id/applicationDateEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -200,12 +200,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication8"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -215,7 +215,7 @@
         <EditText
             android:id="@+id/interviewDateEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -227,12 +227,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication9"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -242,7 +242,7 @@
         <EditText
             android:id="@+id/startDateEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
@@ -255,12 +255,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewEditApplication10"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -270,7 +270,7 @@
         <EditText
             android:id="@+id/notesEditTextEditApplication"
             android:layout_width="280dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
