@@ -33,6 +33,7 @@ import com.example.forgecareer.utils.ApplicationSorter;
 import com.example.forgecareer.utils.Constants;
 import com.example.forgecareer.utils.DropdownAdapter;
 import com.example.forgecareer.utils.Filter;
+import com.example.forgecareer.utils.Utilities;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +42,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -214,6 +217,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[1];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -221,6 +225,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[2];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -228,6 +233,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[3];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -235,6 +241,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[4];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -242,6 +249,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[5];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -249,6 +257,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sortBy = Constants.SORT_OPTIONS[6];
+                updateRecyclerView();
                 dialog.dismiss();
             }
         });
@@ -336,7 +345,33 @@ public class CompanyFragment extends Fragment {
         // Apply search filtering
         Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
         ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
-        sortedEntries = applicationSorter.sortByCreateDate();
+        Log.d(TAG, "sortOption: " + sortBy);
+        if (sortBy.equals("Priority")) {
+            sortedEntries = applicationSorter.sortByPriority();
+            Log.d(TAG, "sort by priority");
+        }
+        else if (sortBy.equals("Create Date")) {
+            sortedEntries = applicationSorter.sortByCreateDate();
+            Log.d(TAG, "sort by create date");
+        }
+        else if (sortBy.equals("Interview Date")) {
+            sortedEntries = applicationSorter.sortByInterviewDate();
+            Log.d(TAG, "sort by interview date");
+        }
+        else if (sortBy.equals("Applied Date")) {
+            sortedEntries = applicationSorter.sortByAppliedDate();
+            Log.d(TAG, "sort by applied date");
+        }
+        else if (sortBy.equals("Status")) {
+            sortedEntries = applicationSorter.sortByStatus();
+            Log.d(TAG, "sort by status");
+        }
+        else {
+            sortedEntries = applicationSorter.sortByStatus();
+            Collections.reverse(sortedEntries);
+            Log.d(TAG, "sort by status (reversed)");
+        }
+        Log.d(TAG, Utilities.printEntries(sortedEntries));
         applicationAdapter = new ApplicationAdapter(sortedEntries);
         recyclerView.setAdapter(applicationAdapter);
     }

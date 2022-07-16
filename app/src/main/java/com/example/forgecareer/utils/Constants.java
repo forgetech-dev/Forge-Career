@@ -25,6 +25,15 @@ public class Constants {
             "Low"
     };
 
+    public static final String[] STATUS = {
+            "Offer",
+            "Rejected",
+            "Interview",
+            "OA",
+            "Applied",
+            "Interested"
+    };
+
     public static final String[] FILTER_OPTIONS = {
             "filter",
             "Intern",
