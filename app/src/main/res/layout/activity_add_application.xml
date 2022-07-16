@@ -210,7 +210,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/calendar_date_48px" />
+            app:srcCompat="@drawable/calendar_interview_48px" />
 
         <EditText
             android:id="@+id/interviewDateEditText"
