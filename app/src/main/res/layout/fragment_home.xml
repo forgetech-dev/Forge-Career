@@ -28,5 +28,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/noDataTextView"
+        android:layout_width="306dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="50dp"
+        android:text="no application data available, please add one"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+    </TextView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
