@@ -36,6 +36,7 @@ public class Constants {
     };
 
     public static final String[] FILTER_OPTIONS = {
+            "All",
             "Intern",
             "Full Time",
             "Interested",
@@ -44,7 +45,7 @@ public class Constants {
             "Interview",
             "Rejected",
             "Offer",
-            "Refereed"
+            "Referred"
     };
 
     public static final String[] SORT_OPTIONS = {
