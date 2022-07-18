@@ -21,17 +21,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
 import com.example.forgecareer.recyclecViews.ApplicationAdapter;
 import com.example.forgecareer.utils.ApplicationSorter;
 import com.example.forgecareer.utils.Constants;
-import com.example.forgecareer.utils.DropdownAdapter;
 import com.example.forgecareer.utils.Filter;
 import com.example.forgecareer.utils.Utilities;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,7 +38,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -80,8 +75,10 @@ public class CompanyFragment extends Fragment {
     ApplicationAdapter applicationAdapter;
 
     final String DEFAULT_SORT_OPTION = "Create Date";
+    final String DEFAULT_FILTER_OPTION = "All";
 
     String sortBy = DEFAULT_SORT_OPTION;
+    String filterBy = DEFAULT_FILTER_OPTION;
 
 
 
@@ -138,6 +135,12 @@ public class CompanyFragment extends Fragment {
                 showSortDialog(sortBy);
             }
         });
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFilterDialog(filterBy);
+            }
+        });
 
 
 
@@ -184,10 +187,11 @@ public class CompanyFragment extends Fragment {
         return view;
     }
 
+
     private void showSortDialog(String sortOption) {
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.bottom_sheet);
+        dialog.setContentView(R.layout.bottom_sheet_sort);
 
         RadioButton sortSelection1 = dialog.findViewById(R.id.sortSelection1);
         RadioButton sortSelection2 = dialog.findViewById(R.id.sortSelection2);
@@ -203,20 +207,21 @@ public class CompanyFragment extends Fragment {
         selections.add(sortSelection5);
         selections.add(sortSelection6);
         Log.d(TAG, "sortOption: " + sortOption);
-        int sortPosition = 0;
-        for (int i = 1; i < Constants.SORT_OPTIONS.length; i++) {
+        int sortPosition = -1;
+        for (int i = 0; i < Constants.SORT_OPTIONS.length; i++) {
             if (sortOption.equals(Constants.SORT_OPTIONS[i])) {
                 sortPosition = i;
             }
         }
         Log.d(TAG, "sortPosition: " + sortPosition);
-        if (sortPosition > 0) {
-            selections.get(sortPosition-1).setChecked(true);
+        if (sortPosition >= 0) {
+            selections.get(sortPosition).setChecked(true);
         }
+
         sortSelection1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[1];
+                sortBy = Constants.SORT_OPTIONS[0];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -224,7 +229,7 @@ public class CompanyFragment extends Fragment {
         sortSelection2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[2];
+                sortBy = Constants.SORT_OPTIONS[1];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -232,7 +237,7 @@ public class CompanyFragment extends Fragment {
         sortSelection3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[3];
+                sortBy = Constants.SORT_OPTIONS[2];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -240,7 +245,7 @@ public class CompanyFragment extends Fragment {
         sortSelection4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[4];
+                sortBy = Constants.SORT_OPTIONS[3];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -248,7 +253,7 @@ public class CompanyFragment extends Fragment {
         sortSelection5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[5];
+                sortBy = Constants.SORT_OPTIONS[4];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -256,7 +261,7 @@ public class CompanyFragment extends Fragment {
         sortSelection6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[6];
+                sortBy = Constants.SORT_OPTIONS[5];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -269,6 +274,129 @@ public class CompanyFragment extends Fragment {
 //            }
 //        });
 
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    private void showFilterDialog(String filterOption) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_filter);
+        RadioButton filterSelection0 = dialog.findViewById(R.id.filterSelection0);
+        RadioButton filterSelection1 = dialog.findViewById(R.id.filterSelection1);
+        RadioButton filterSelection2 = dialog.findViewById(R.id.filterSelection2);
+        RadioButton filterSelection3 = dialog.findViewById(R.id.filterSelection3);
+        RadioButton filterSelection4 = dialog.findViewById(R.id.filterSelection4);
+        RadioButton filterSelection5 = dialog.findViewById(R.id.filterSelection5);
+        RadioButton filterSelection6 = dialog.findViewById(R.id.filterSelection6);
+        RadioButton filterSelection7 = dialog.findViewById(R.id.filterSelection7);
+        RadioButton filterSelection8 = dialog.findViewById(R.id.filterSelection8);
+        RadioButton filterSelection9 = dialog.findViewById(R.id.filterSelection9);
+        ArrayList<RadioButton> selections = new ArrayList<>();
+        selections.add(filterSelection0);
+        selections.add(filterSelection1);
+        selections.add(filterSelection2);
+        selections.add(filterSelection3);
+        selections.add(filterSelection4);
+        selections.add(filterSelection5);
+        selections.add(filterSelection6);
+        selections.add(filterSelection7);
+        selections.add(filterSelection8);
+        selections.add(filterSelection9);
+
+        int filterPosition = -1;
+        for (int i = 0; i < Constants.FILTER_OPTIONS.length; i++) {
+            if (filterOption.equals(Constants.FILTER_OPTIONS[i])) {
+                filterPosition = i;
+            }
+        }
+        Log.d(TAG, "filterPosition: " + filterPosition);
+        if (filterPosition >= 0) {
+            selections.get(filterPosition).setChecked(true);
+        }
+        filterSelection0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[0];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[1];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[2];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[3];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[4];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[5];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[6];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[7];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[8];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
+        filterSelection9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterBy = Constants.FILTER_OPTIONS[9];
+                updateRecyclerView();
+                dialog.dismiss();
+            }
+        });
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -295,26 +423,6 @@ public class CompanyFragment extends Fragment {
         }
     };
 
-    private List<Application> updateFromSnapshot(DataSnapshot snapshot) {
-        List<Application> applicationList = new ArrayList<>();
-        for (DataSnapshot snap : snapshot.getChildren()) {
-            String companyName = snap.child("companyName").getValue(String.class);
-            String jobType = snap.child("jobType").getValue(String.class);
-            String positionType = snap.child("positionType").getValue(String.class);
-            String referrer = snap.child("referer").getValue(String.class);
-            String status = snap.child("status").getValue(String.class);
-            String applicationDate = snap.child("applicationDate").getValue(String.class);
-            String priority = snap.child("priority").getValue(String.class);
-            String interviewDate = snap.child("interviewDate").getValue(String.class);
-            String notes = snap.child("notes").getValue(String.class);
-            String startDate = snap.child("startDate").getValue(String.class);
-            String createDate = snap.child("createDate").getValue(String.class);
-            String updateDate = snap.child("updateDate").getValue(String.class);
-            Log.d(TAG, createDate);
-            applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes, createDate, updateDate));
-        }
-        return applicationList;
-    }
     private Map<String, Application> updateMapFromSnapshot(DataSnapshot snapshot) {
         List<Application> applicationList = new ArrayList<>();
         Map<String, Application> applicationMap = new HashMap<>();
@@ -344,7 +452,43 @@ public class CompanyFragment extends Fragment {
     private void updateRecyclerView() {
         // Apply search filtering
         Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
+
+
+        Log.d(TAG, "filterBy: " + filterBy);
+
+        // Apply filter by
+        if (filterBy.equals("Intern")) {
+            applicationMapFiltered = Filter.filterByIntern(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Full Time")) {
+            applicationMapFiltered = Filter.filterByFullTime(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Interested")) {
+            applicationMapFiltered = Filter.filterByInterested(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Applied")) {
+            applicationMapFiltered = Filter.filterByApplied(applicationMapFiltered);
+        }
+        else if (filterBy.equals("OA")) {
+            applicationMapFiltered = Filter.filterByOA(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Interview")) {
+            applicationMapFiltered = Filter.filterByInterview(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Rejected")) {
+            applicationMapFiltered = Filter.filterByRejected(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Offer")) {
+            applicationMapFiltered = Filter.filterByOffer(applicationMapFiltered);
+        }
+        else if (filterBy.equals("Referred")) {
+            applicationMapFiltered = Filter.filterByReferred(applicationMapFiltered);
+        }
+
+
         ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
+
+
         Log.d(TAG, "sortOption: " + sortBy);
         if (sortBy.equals("Priority")) {
             sortedEntries = applicationSorter.sortByPriority();
@@ -356,10 +500,12 @@ public class CompanyFragment extends Fragment {
         }
         else if (sortBy.equals("Interview Date")) {
             sortedEntries = applicationSorter.sortByInterviewDate();
+            Collections.reverse(sortedEntries);
             Log.d(TAG, "sort by interview date");
         }
         else if (sortBy.equals("Applied Date")) {
             sortedEntries = applicationSorter.sortByAppliedDate();
+            Collections.reverse(sortedEntries);
             Log.d(TAG, "sort by applied date");
         }
         else if (sortBy.equals("Status")) {

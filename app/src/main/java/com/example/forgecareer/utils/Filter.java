@@ -15,6 +15,56 @@ public class Filter {
 
     private static final String TAG = "Filter";
 
+    public static Map<String, Application> filterByIntern(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getJobType().equals("Intern")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByFullTime(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getJobType().equals("Full Time")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByInterested(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getStatus().equals("Interested")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByApplied(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getStatus().equals("Applied")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByOA(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getStatus().equals("OA")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
     public static Map<String, Application> filterByInterview(Map<String, Application> applicationMap) {
         Map<String, Application> filteredMap = new HashMap<>();
         for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
@@ -25,6 +75,35 @@ public class Filter {
         return filteredMap;
     }
 
+    public static Map<String, Application> filterByOffer(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getStatus().equals("Offer")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByRejected(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (entry.getValue().getStatus().equals("Rejected")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
+    public static Map<String, Application> filterByReferred(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if (!entry.getValue().getReferer().equals("N/A")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
 
 
     public static Map<String, Application> filterByDate(Map<String, Application> applicationMap,

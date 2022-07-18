@@ -10,12 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ForgeCareer">
         <activity
+            android:name=".ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/Theme.ForgeCareer.NoActionBar" />
+        <activity
             android:name=".EditApplicationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AddApplicationActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".FirebaseActivityTemp"
             android:exported="false" />

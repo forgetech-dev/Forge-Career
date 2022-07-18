@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddApplicationActivity"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed"
     android:orientation="vertical"
     android:padding="4dp">
 
@@ -26,7 +27,7 @@
             android:id="@+id/companyNameEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="company name"
@@ -49,17 +50,24 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/job_type" />
 
-        <EditText
-            android:id="@+id/jobTypeEditTextEditApplication"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="job type"
-            android:inputType="textPersonName"
+            android:hint="JobType"
             app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/jobTypeAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="none"
+                android:textSize="11dp" />
+        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,19 +84,95 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/status_48px" />
 
-        <EditText
-            android:id="@+id/statusEditTextEditApplication"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:ems="10"
             android:hint="status"
-            android:inputType="textPersonName"
             app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/statusAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textSize="11dp"
+
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewEditApplication6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/priority_48px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Priority"            app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication6"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/priorityAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textSize="11dp"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewEditApplication9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/start_date_48px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="StartDate"
+            app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication9"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/startDateAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textSize="11dp"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -108,7 +192,7 @@
             android:id="@+id/positionTypeEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="position type"
@@ -135,39 +219,12 @@
             android:id="@+id/refererEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="referer"
             android:inputType="textPersonName"
             app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication5"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageViewEditApplication6"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/priority_48px" />
-
-        <EditText
-            android:id="@+id/priorityEditTextEditApplication"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="priority"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication6"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -189,10 +246,10 @@
             android:id="@+id/applicationDateEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="application date"
+            android:hint="application date MM/dd/yyyy"
             android:inputType="textPersonName"
             app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication7"
             app:layout_constraintTop_toTopOf="parent" />
@@ -216,41 +273,13 @@
             android:id="@+id/interviewDateEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="interview date"
+            android:hint="interview date MM/dd/yyyy"
             android:inputType="textPersonName"
             app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication8"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageViewEditApplication9"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/start_date_48px" />
-
-        <EditText
-            android:id="@+id/startDateEditTextEditApplication"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="start date"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toEndOf="@+id/imageViewEditApplication9"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -271,7 +300,7 @@
             android:id="@+id/notesEditTextEditApplication"
             android:layout_width="280dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="notes"
