@@ -184,6 +184,7 @@ public class CompanyFragment extends Fragment {
         return view;
     }
 
+
     private void showSortDialog(String sortOption) {
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -203,20 +204,20 @@ public class CompanyFragment extends Fragment {
         selections.add(sortSelection5);
         selections.add(sortSelection6);
         Log.d(TAG, "sortOption: " + sortOption);
-        int sortPosition = 0;
+        int sortPosition = -1;
         for (int i = 1; i < Constants.SORT_OPTIONS.length; i++) {
             if (sortOption.equals(Constants.SORT_OPTIONS[i])) {
                 sortPosition = i;
             }
         }
         Log.d(TAG, "sortPosition: " + sortPosition);
-        if (sortPosition > 0) {
-            selections.get(sortPosition-1).setChecked(true);
+        if (sortPosition >= 0) {
+            selections.get(sortPosition).setChecked(true);
         }
         sortSelection1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[1];
+                sortBy = Constants.SORT_OPTIONS[0];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -224,7 +225,7 @@ public class CompanyFragment extends Fragment {
         sortSelection2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[2];
+                sortBy = Constants.SORT_OPTIONS[1];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -232,7 +233,7 @@ public class CompanyFragment extends Fragment {
         sortSelection3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[3];
+                sortBy = Constants.SORT_OPTIONS[2];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -240,7 +241,7 @@ public class CompanyFragment extends Fragment {
         sortSelection4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[4];
+                sortBy = Constants.SORT_OPTIONS[3];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -248,7 +249,7 @@ public class CompanyFragment extends Fragment {
         sortSelection5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[5];
+                sortBy = Constants.SORT_OPTIONS[4];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -256,7 +257,7 @@ public class CompanyFragment extends Fragment {
         sortSelection6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sortBy = Constants.SORT_OPTIONS[6];
+                sortBy = Constants.SORT_OPTIONS[5];
                 updateRecyclerView();
                 dialog.dismiss();
             }
@@ -295,26 +296,6 @@ public class CompanyFragment extends Fragment {
         }
     };
 
-    private List<Application> updateFromSnapshot(DataSnapshot snapshot) {
-        List<Application> applicationList = new ArrayList<>();
-        for (DataSnapshot snap : snapshot.getChildren()) {
-            String companyName = snap.child("companyName").getValue(String.class);
-            String jobType = snap.child("jobType").getValue(String.class);
-            String positionType = snap.child("positionType").getValue(String.class);
-            String referrer = snap.child("referer").getValue(String.class);
-            String status = snap.child("status").getValue(String.class);
-            String applicationDate = snap.child("applicationDate").getValue(String.class);
-            String priority = snap.child("priority").getValue(String.class);
-            String interviewDate = snap.child("interviewDate").getValue(String.class);
-            String notes = snap.child("notes").getValue(String.class);
-            String startDate = snap.child("startDate").getValue(String.class);
-            String createDate = snap.child("createDate").getValue(String.class);
-            String updateDate = snap.child("updateDate").getValue(String.class);
-            Log.d(TAG, createDate);
-            applicationList.add(new Application(companyName, jobType, positionType, startDate, referrer, status, applicationDate, priority, interviewDate, notes, createDate, updateDate));
-        }
-        return applicationList;
-    }
     private Map<String, Application> updateMapFromSnapshot(DataSnapshot snapshot) {
         List<Application> applicationList = new ArrayList<>();
         Map<String, Application> applicationMap = new HashMap<>();
@@ -345,6 +326,10 @@ public class CompanyFragment extends Fragment {
         // Apply search filtering
         Map<String, Application> applicationMapFiltered = Filter.filterByLoseSearch(applicationMap, searchTextView.getText().toString());
         ApplicationSorter applicationSorter = new ApplicationSorter(applicationMapFiltered);
+        
+
+
+
         Log.d(TAG, "sortOption: " + sortBy);
         if (sortBy.equals("Priority")) {
             sortedEntries = applicationSorter.sortByPriority();
@@ -356,10 +341,12 @@ public class CompanyFragment extends Fragment {
         }
         else if (sortBy.equals("Interview Date")) {
             sortedEntries = applicationSorter.sortByInterviewDate();
+            Collections.reverse(sortedEntries);
             Log.d(TAG, "sort by interview date");
         }
         else if (sortBy.equals("Applied Date")) {
             sortedEntries = applicationSorter.sortByAppliedDate();
+            Collections.reverse(sortedEntries);
             Log.d(TAG, "sort by applied date");
         }
         else if (sortBy.equals("Status")) {

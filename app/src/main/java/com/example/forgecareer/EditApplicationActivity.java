@@ -4,29 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.forgecareer.db.Application;
+import com.example.forgecareer.utils.Constants;
 import com.example.forgecareer.utils.DateParser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EditApplicationActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
-    EditText companyNameEditText, jobTypeEditText, statusEditText, positionTypeEditText, refererEditText, priorityEditText;
-    EditText applicationDateEditText, interviewDateEditText, startDateEditText, notesEditText;
+    EditText companyNameEditText, positionTypeEditText, refererEditText;
+    EditText applicationDateEditText, interviewDateEditText, notesEditText;
+    AutoCompleteTextView jobTypeAutoComplete, statusAutoComplete, priorityAutoComplete, startDateAutoComplete;
+    ArrayAdapter<String> jobTypeAdapterItems, statusAdapterItems, priorityAdapterItems, startDateAdapterItems;
 
     FloatingActionButton addApplicationCheckFAB;
 
     Map<String, Application> applicationMap;
     Application currentApplication;
+
+
+    public static String TAG = "EditApplicationActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +52,21 @@ public class EditApplicationActivity extends AppCompatActivity {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference(Application.class.getSimpleName()+ "/" + LoginActivity.userID + "/" + applicationKey);
 
-        companyNameEditText = findViewById(R.id.companyNameEditTextEditApplication);
-        jobTypeEditText = findViewById(R.id.jobTypeEditTextEditApplication);
-        statusEditText = findViewById(R.id.statusEditTextEditApplication);
-        positionTypeEditText = findViewById(R.id.positionTypeEditTextEditApplication);
-        refererEditText = findViewById(R.id.refererEditTextEditApplication);
-        priorityEditText = findViewById(R.id.priorityEditTextEditApplication);
-        applicationDateEditText = findViewById(R.id.applicationDateEditTextEditApplication);
-        interviewDateEditText = findViewById(R.id.interviewDateEditTextEditApplication);
-        startDateEditText = findViewById(R.id.startDateEditTextEditApplication);
-        notesEditText = findViewById(R.id.notesEditTextEditApplication);
+        bindView();
 
         applicationMap = CompanyFragment.applicationMap;
         currentApplication = applicationMap.get(applicationKey);
 
         companyNameEditText.setText(currentApplication.getCompanyName());
-        jobTypeEditText.setText(currentApplication.getJobType());
-        statusEditText.setText(currentApplication.getStatus());
         positionTypeEditText.setText(currentApplication.getPositionType());
         refererEditText.setText(currentApplication.getReferer());
-        priorityEditText.setText(currentApplication.getPriority());
         applicationDateEditText.setText(currentApplication.getApplicationDate());
         interviewDateEditText.setText(currentApplication.getInterviewDate());
-        startDateEditText.setText(currentApplication.getStartDate());
         notesEditText.setText(currentApplication.getNotes());
+
+
+
+        updateAutocompleteTextView();
 
 
         addApplicationCheckFAB = findViewById(R.id.addApplicationCheckFABEditApplication);
@@ -78,17 +81,49 @@ public class EditApplicationActivity extends AppCompatActivity {
         });
     }
 
+    public void bindView() {
+        companyNameEditText = findViewById(R.id.companyNameEditTextEditApplication);
+        positionTypeEditText = findViewById(R.id.positionTypeEditTextEditApplication);
+        refererEditText = findViewById(R.id.refererEditTextEditApplication);
+        applicationDateEditText = findViewById(R.id.applicationDateEditTextEditApplication);
+        interviewDateEditText = findViewById(R.id.interviewDateEditTextEditApplication);
+        notesEditText = findViewById(R.id.notesEditTextEditApplication);
+        jobTypeAutoComplete = findViewById(R.id.jobTypeAutoComplete);
+        priorityAutoComplete = findViewById(R.id.priorityAutoComplete);
+        statusAutoComplete = findViewById(R.id.statusAutoComplete);
+        startDateAutoComplete = findViewById(R.id.startDateAutoComplete);
+    }
+
+    public void updateAutocompleteTextView() {
+        jobTypeAutoComplete.setText(currentApplication.getJobType());
+        priorityAutoComplete.setText(currentApplication.getPriority());
+        statusAutoComplete.setText(currentApplication.getStatus());
+        startDateAutoComplete.setText(currentApplication.getStartDate());
+        String[] items = {"One", "Two", "Three", "Four", "Five"};
+        jobTypeAdapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Constants.JOB_TYPE);
+        priorityAdapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Constants.PRIORITY);
+        statusAdapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Constants.STATUS);
+        startDateAdapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Constants.START_DATE);
+        jobTypeAutoComplete.setAdapter(jobTypeAdapterItems);
+        priorityAutoComplete.setAdapter(priorityAdapterItems);
+        statusAutoComplete.setAdapter(statusAdapterItems);
+        startDateAutoComplete.setAdapter(startDateAdapterItems);
+
+
+
+    }
+
     public boolean checkInput() {
         String companyName = companyNameEditText.getText().toString();
-        String jobType = jobTypeEditText.getText().toString();
+        String jobType = jobTypeAutoComplete.getText().toString();
+        String priority = priorityAutoComplete.getText().toString();
+        String status = statusAutoComplete.getText().toString();
+        String startDate = startDateAutoComplete.getText().toString();
         String positionType = positionTypeEditText.getText().toString();
         String referrer = refererEditText.getText().toString();
-        String status = statusEditText.getText().toString();
         String applicationDate = applicationDateEditText.getText().toString();
-        String priority = priorityEditText.getText().toString();
         String interviewDate = interviewDateEditText.getText().toString();
         String notes = notesEditText.getText().toString();
-        String startDate = startDateEditText.getText().toString();
 
         if (companyName.equals("")) {
             Toast.makeText(this, "please fill out companyName", Toast.LENGTH_SHORT).show();
@@ -111,7 +146,7 @@ public class EditApplicationActivity extends AppCompatActivity {
         String companyName = companyNameEditText.getText().toString();
 
         // jobType (mandatory)
-        String jobType = jobTypeEditText.getText().toString();
+        String jobType = jobTypeAutoComplete.getText().toString();
 
         // positionType (optional) -> default: N/A
         String positionType = positionTypeEditText.getText().toString();
@@ -126,7 +161,7 @@ public class EditApplicationActivity extends AppCompatActivity {
         }
 
         // status (mandatory)
-        String status = statusEditText.getText().toString();
+        String status = statusAutoComplete.getText().toString();
 
         // applicationDate (optional) -> default: N/A
         String applicationDate = applicationDateEditText.getText().toString();
@@ -135,7 +170,7 @@ public class EditApplicationActivity extends AppCompatActivity {
         }
 
         // priority (mandatory) -> default: Medium
-        String priority = priorityEditText.getText().toString();
+        String priority = priorityAutoComplete.getText().toString();
         if (priority.equals("")) {
             priority = "Medium";
         }
@@ -147,7 +182,7 @@ public class EditApplicationActivity extends AppCompatActivity {
         }
 
         // startDate (optional) -> default: Summer23
-        String startDate = startDateEditText.getText().toString();
+        String startDate = startDateAutoComplete.getText().toString();
         if (startDate.equals("")) {
             startDate = "Summer23";
         }

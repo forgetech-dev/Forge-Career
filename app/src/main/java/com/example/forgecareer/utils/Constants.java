@@ -4,12 +4,13 @@ package com.example.forgecareer.utils;
  * Created by Yucheng Huang on 7/4/2022
  */
 public class Constants {
-    public static final String[] JOBTYPE = {
+
+    public static final String[] JOB_TYPE = {
             "Full Time",
             "Intern"
     };
 
-    public static final String[] STARTDATE = {
+    public static final String[] START_DATE = {
             "FALL 22",
             "Winter 23",
             "Spring 23",
@@ -35,7 +36,6 @@ public class Constants {
     };
 
     public static final String[] FILTER_OPTIONS = {
-            "filter",
             "Intern",
             "Full Time",
             "Interested",
@@ -48,7 +48,6 @@ public class Constants {
     };
 
     public static final String[] SORT_OPTIONS = {
-            "sort",
             "Priority",
             "Create Date",
             "Interview Date",
