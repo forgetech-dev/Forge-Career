@@ -208,7 +208,7 @@ public class CompanyFragment extends Fragment {
         selections.add(sortSelection6);
         Log.d(TAG, "sortOption: " + sortOption);
         int sortPosition = -1;
-        for (int i = 1; i < Constants.SORT_OPTIONS.length; i++) {
+        for (int i = 0; i < Constants.SORT_OPTIONS.length; i++) {
             if (sortOption.equals(Constants.SORT_OPTIONS[i])) {
                 sortPosition = i;
             }
@@ -217,9 +217,7 @@ public class CompanyFragment extends Fragment {
         if (sortPosition >= 0) {
             selections.get(sortPosition).setChecked(true);
         }
-        else {
-            selections.get(0).setChecked(true);
-        }
+
         sortSelection1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -310,7 +308,7 @@ public class CompanyFragment extends Fragment {
         selections.add(filterSelection9);
 
         int filterPosition = -1;
-        for (int i = 1; i < Constants.FILTER_OPTIONS.length; i++) {
+        for (int i = 0; i < Constants.FILTER_OPTIONS.length; i++) {
             if (filterOption.equals(Constants.FILTER_OPTIONS[i])) {
                 filterPosition = i;
             }
@@ -318,8 +316,6 @@ public class CompanyFragment extends Fragment {
         Log.d(TAG, "filterPosition: " + filterPosition);
         if (filterPosition >= 0) {
             selections.get(filterPosition).setChecked(true);
-        } else {
-            selections.get(0).setChecked(true);
         }
         filterSelection0.setOnClickListener(new View.OnClickListener() {
             @Override
