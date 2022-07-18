@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "941706182527",
+    "firebase_url": "https://forge-career-default-rtdb.firebaseio.com",
     "project_id": "forge-career",
     "storage_bucket": "forge-career.appspot.com"
   },
@@ -19,6 +20,51 @@
           "android_info": {
             "package_name": "com.example.forgecareer",
             "certificate_hash": "b0a344b4f47fb07c26cbfa76da489f450a7456da"
+          }
+        },
+        {
+          "client_id": "941706182527-hqpmfh0sc5u4kjkgm5kr2uct8457fo6h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.forgecareer",
+            "certificate_hash": "3cfc7d58649c910b464fecc5651d760f99afcf26"
+          }
+        },
+        {
+          "client_id": "941706182527-avg5234pqv7t7nigm53feakvqqff3rck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBguZd8aeL7YLkNB2UPB3ZKPoiP7TO2uWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941706182527-avg5234pqv7t7nigm53feakvqqff3rck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941706182527:android:edd4f457cdb2004aa3244a",
+        "android_client_info": {
+          "package_name": "com.forgetech.forgecareer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941706182527-4epntilq4bs9t76v33185jvt2srubt6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.forgetech.forgecareer",
+            "certificate_hash": "3cfc7d58649c910b464fecc5651d760f99afcf26"
           }
         },
         {
