@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.forgecareer">
+    package="com.forgetech.forgecareer">
 
     <application
         android:allowBackup="true"
@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ForgeCareer">
         <activity
-            android:name=".ScrollingActivity"
+            android:name="com.forgetech.forgecareer.ScrollingActivity"
             android:exported="false"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/Theme.ForgeCareer.NoActionBar" />
         <activity
-            android:name=".EditApplicationActivity"
+            android:name="com.forgetech.forgecareer.EditApplicationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".AddApplicationActivity"
+            android:name="com.forgetech.forgecareer.AddApplicationActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.forgetech.forgecareer.MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".FirebaseActivityTemp"
+            android:name="com.forgetech.forgecareer.FirebaseActivityTemp"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.forgetech.forgecareer.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.forgetech.forgecareer.MainActivity"
             android:exported="true" />
     </application>
 

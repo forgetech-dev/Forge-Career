@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirebaseActivityTemp"
+    tools:context="com.forgetech.forgecareer.FirebaseActivityTemp"
     android:padding="15dp"
     android:orientation="vertical">
 
