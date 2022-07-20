@@ -26,7 +26,7 @@ public class Filter {
     public static Map<String, Application> filterByFullTime(Map<String, Application> applicationMap) {
         Map<String, Application> filteredMap = new HashMap<>();
         for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
-            if (entry.getValue().getJobType().equals("Full Time")) {
+            if (entry.getValue().getJobType().equals("FullTime")) {
                 filteredMap.put(entry.getKey(), entry.getValue());
             }
         }
