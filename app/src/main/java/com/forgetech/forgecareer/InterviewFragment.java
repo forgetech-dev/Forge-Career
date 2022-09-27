@@ -113,7 +113,7 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
 //                for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
 //                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
 //                }
-                Map<String, Application> filteredMap = Filter.filterByInterview(applicationMap);
+                Map<String, Application> filteredMap = Filter.filterByInterviewOA(applicationMap);
                 applicationMap = filteredMap;
                 ApplicationSorter applicationSorter = new ApplicationSorter(Filter.filterByDate(filteredMap, selectedDate));
                 ArrayList<Map.Entry<String, Application>> sortedEntries = applicationSorter.sortByInterviewDate();
@@ -193,7 +193,7 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
             Log.d(TAG, "Company: " + application.getCompanyName());
             Log.d(TAG, "Status: " + application.getStatus());
             Log.d(TAG, "InterviewDate" + application.getInterviewDate());
-            if (application.getStatus().equals("Interview") && !application.getInterviewDate().equals("N/A")) {
+            if ((application.getStatus().equals("Interview") || application.getStatus().equals("OA")) && !application.getInterviewDate().equals("N/A")) {
                 Log.d(TAG, application.getInterviewDate());
                 Date date = DateParser.stringToDate(application.getInterviewDate());
                 int year = date.getYear() + 1900;
@@ -221,7 +221,7 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
         Map.Entry<String, Application> nextEntry = null;
         for (Map.Entry<String, Application> entry : applicationEntries) {
             Application currentApplication = entry.getValue();
-            if (currentApplication.getStatus().equals("Interview") && !currentApplication.getInterviewDate().equals("N/A")) {
+            if ((currentApplication.getStatus().equals("Interview") || currentApplication.getStatus().equals("OA") )&& !currentApplication.getInterviewDate().equals("N/A")) {
                 Date applicationInterviewDate = DateParser.stringToDate(currentApplication.getInterviewDate());
                 if (date.compareTo(applicationInterviewDate) < 0) {
                     nextEntry = entry;

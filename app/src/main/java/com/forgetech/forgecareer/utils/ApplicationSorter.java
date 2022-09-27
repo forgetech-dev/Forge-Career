@@ -93,7 +93,7 @@ public class ApplicationSorter {
             if (entry2.getValue().getStatus().equals("Interview") && !entry2.getValue().getInterviewDate().equals("N/A")) {
                 date2 = DateParser.stringToDate(entry2.getValue().getInterviewDate());
             }
-            return date1.compareTo(date2);
+            return -date1.compareTo(date2);
         }
     }
 

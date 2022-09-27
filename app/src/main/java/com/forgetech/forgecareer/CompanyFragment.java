@@ -501,7 +501,6 @@ public class CompanyFragment extends Fragment {
         }
         else if (sortBy.equals("Interview Date")) {
             sortedEntries = applicationSorter.sortByInterviewDate();
-            Collections.reverse(sortedEntries);
             Log.d(TAG, "sort by interview date");
         }
         else if (sortBy.equals("Applied Date")) {
