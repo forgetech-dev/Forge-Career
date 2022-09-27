@@ -75,7 +75,7 @@ public class ApplicationSorter {
         public int compare(Map.Entry<String, Application> entry1, Map.Entry<String, Application> entry2) {
             Date date1 = DateParser.stringToDate(entry1.getValue().getCreateDate());
             Date date2 = DateParser.stringToDate(entry2.getValue().getCreateDate());
-            return date1.compareTo(date2);
+            return -date1.compareTo(date2);
         }
     }
 

@@ -28,11 +28,11 @@ public class Constants {
 
     public static final String[] STATUS = {
             "Offer",
-            "Rejected",
             "Interview",
             "OA",
             "Applied",
-            "Interested"
+            "Interested",
+            "Rejected"
     };
 
     public static final String[] FILTER_OPTIONS = {
