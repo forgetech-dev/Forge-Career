@@ -113,6 +113,16 @@ public class Filter {
         return filteredMap;
     }
 
+    public static Map<String, Application> filterByUndatedActionRequired(Map<String, Application> applicationMap) {
+        Map<String, Application> filteredMap = new HashMap<>();
+        for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
+            if ((entry.getValue().getStatus().equals("Interview") || entry.getValue().getStatus().equals("OA")) && entry.getValue().getInterviewDate().equals("N/A")) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredMap;
+    }
+
 
     public static Map<String, Application> filterByDate(Map<String, Application> applicationMap,
                                                         org.threeten.bp.LocalDate localDate) {

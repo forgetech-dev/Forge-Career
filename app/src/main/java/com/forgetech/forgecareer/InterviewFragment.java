@@ -58,7 +58,9 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
 
     private ArrayList<Map.Entry<String, Application>> applicationEntries;
     private Map<String, Application> applicationMap;
+    private Map<String, Application> undatedActionRequiredMap;
     private ConstraintLayout dummyLayout;
+
 
     private LocalDate selectedDate;
 
@@ -113,11 +115,14 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
 //                for (Map.Entry<String, Application> entry : applicationMap.entrySet()) {
 //                    Log.d(TAG, entry.getValue().getCompanyName() + " : " +entry.getValue().getCreateDate());
 //                }
+
                 Map<String, Application> filteredMap = Filter.filterByInterviewOA(applicationMap);
+                undatedActionRequiredMap = Filter.filterByUndatedActionRequired(applicationMap);
                 applicationMap = filteredMap;
+
                 ApplicationSorter applicationSorter = new ApplicationSorter(Filter.filterByDate(filteredMap, selectedDate));
                 ArrayList<Map.Entry<String, Application>> sortedEntries = applicationSorter.sortByInterviewDate();
-
+                sortedEntries.addAll(undatedActionRequiredMap.entrySet());
                 for (Map.Entry<String, Application> entry : sortedEntries) {
                     Log.d(TAG, "Company: " + entry.getValue().getCompanyName() + "  " + entry.getValue().getInterviewDate());
                 }
@@ -161,6 +166,7 @@ public class InterviewFragment extends Fragment implements OnDateSelectedListene
 
         ApplicationSorter sorter = new ApplicationSorter(interviewAfterMap);
         ArrayList<Map.Entry<String, Application>> sortedEntries = sorter.sortByInterviewDate();
+        sortedEntries.addAll(undatedActionRequiredMap.entrySet());
         InterviewAdapter interviewAdapter = new InterviewAdapter(sortedEntries);
         recyclerView.setAdapter(interviewAdapter);
 
